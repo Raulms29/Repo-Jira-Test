@@ -1,23 +1,23 @@
-name: Deploy Jira Integration
+name: Despliegue a Produccion
 
 on:
     push:
         branches:
-            - master
-    pull_request:
+            - master # Se ejecutará cada vez que subas código a master
 
 jobs:
-    integration:
+    deploy:
+        name: Desplegar la app
         runs-on: ubuntu-latest
+        # ESTA ES LA LÍNEA MÁGICA: Le dice a GitHub y a Jira que esto es un despliegue
+        environment: Production
 
         steps:
-            - name: Checkout repository
+            - name: Descargar el código
               uses: actions/checkout@v4
 
-            - name: Get Service ID
-              run: echo "Using service ID for integration"
-              env:
-                  SERVICE_ID: ${{ secrets.SERVICE_ID }}
-
-            - name: Trigger integration
-              run: echo "Service ID is configured"
+            - name: Simulando el proceso de despliegue...
+              run: |
+                  echo "Iniciando el despliegue para el ticket asociado..."
+                  sleep 5
+                  echo "¡Despliegue completado con éxito!"
