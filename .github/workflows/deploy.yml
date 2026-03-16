@@ -1,0 +1,23 @@
+name: Deploy Jira Integration
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+
+jobs:
+    integration:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Get Service ID
+              run: echo "Using service ID for integration"
+              env:
+                  SERVICE_ID: ${{ secrets.SERVICE_ID }}
+
+            - name: Trigger integration
+              run: echo "Service ID is configured"
